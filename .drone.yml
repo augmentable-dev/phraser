@@ -1,0 +1,13 @@
+---
+workspace:
+  base: /go
+  path: src/github.com/augmentable-opensource/phraser
+
+pipeline:
+  test:
+    image: golang:1.11.1
+    environment:
+
+
+    commands:
+      - go test -v ./...

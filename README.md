@@ -1,2 +1,3 @@
 # phraser
-Phrase management service
+
+Open source phrase management microservice.

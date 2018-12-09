@@ -1,0 +1,38 @@
+syntax = "proto3";
+package api;
+
+// import "google/api/annotations.proto";
+// import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
+
+service Phraser {
+    rpc SetPhrase(SetPhraseRequest) returns (Phrase) {}
+    rpc GetPhrase(GetPhraseRequest) returns (Phrase) {}
+    rpc ListPhrases(ListPhrasesRequest) returns (stream Phrase) {}
+}
+
+message Phrase {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp updated_at = 2;
+
+    string collection = 3;
+    string path = 4;
+    string value = 5;
+    bool set = 6;
+}
+
+message SetPhraseRequest {
+    string collection = 1;
+    string path = 2;
+    string value = 3;
+}
+
+message GetPhraseRequest {
+    string collection = 1;
+    string path = 2;
+}
+
+message ListPhrasesRequest {
+    string collection = 1;
+    string pathPrefix = 2;
+}
