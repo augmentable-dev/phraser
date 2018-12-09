@@ -1,6 +1,6 @@
 ---
 workspace:
-  base: /go
+  base: /usr/local/go
   path: src/github.com/augmentable-opensource/phraser
 
 pipeline:
