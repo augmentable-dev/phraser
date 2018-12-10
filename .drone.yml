@@ -1,8 +1,11 @@
+kind: pipeline
+name: default
+
 workspace:
   base: /go
   path: src/github.com/augmentable-opensource/phraser
 
-pipeline:
+steps:
   test:
     image: golang:1.11.1
     secrets: [codecov_token]
