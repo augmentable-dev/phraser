@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	GRPCAddr = ":50060"
+	GRPCAddr = "127.0.0.1:50060"
 )
 
 var GRPCClient api.PhraserClient
