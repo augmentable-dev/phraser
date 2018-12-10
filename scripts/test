@@ -3,7 +3,7 @@
 set -e
 echo "" > coverage.txt
 
-for d in $(go list ./... | grep -v vendor); do
+for d in $(go list ./... | grep -v vendor | grep -v cmd/phraser); do
     echo $d
     go test -v -race -coverprofile=c.out -covermode=atomic $d
     if [ -f c.out ]; then
