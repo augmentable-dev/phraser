@@ -13,7 +13,7 @@ pipeline:
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - pwd
-      - go get -v
+      - ls -al
       - ./scripts/test
       - ./cc-test-reporter after-build
     
