@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/augmentable-opensource/phraser/pkg/api"
 	"go.uber.org/zap"
@@ -31,6 +32,8 @@ func TestMain(m *testing.M) {
 			logger.Fatal(err.Error())
 		}
 	}()
+
+	time.Sleep(3 * 1000)
 
 	conn, err := grpc.Dial(GRPCAddr, grpc.WithInsecure())
 	if err != nil {
