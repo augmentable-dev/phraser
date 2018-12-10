@@ -16,5 +16,5 @@ steps:
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - ./scripts/test
-      - ./cc-test-reporter after-build
+      - ./cc-test-reporter after-build --exit-code 0
     
