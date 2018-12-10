@@ -1,6 +1,6 @@
 ---
 workspace:
-  base: /usr/local/go
+  base: /go
   path: src/github.com/augmentable-opensource/phraser
 
 pipeline:
@@ -13,6 +13,6 @@ pipeline:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
-      - go test -v ./... -cover -coverprofile=c.out
+      - ./scripts/test
       - ./cc-test-reporter after-build
     
