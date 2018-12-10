@@ -6,7 +6,7 @@ workspace:
   path: src/github.com/augmentable-opensource/phraser
 
 steps:
-  test:
+  - name: test
     image: golang:1.11.1
     secrets: [codecov_token]
     environment:
