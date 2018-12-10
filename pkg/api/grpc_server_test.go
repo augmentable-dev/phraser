@@ -33,7 +33,7 @@ func TestMain(m *testing.M) {
 		}
 	}()
 
-	time.Sleep(3 * 1000)
+	time.Sleep(5 * 1000)
 
 	conn, err := grpc.Dial(GRPCAddr, grpc.WithInsecure())
 	if err != nil {
