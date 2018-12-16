@@ -8,10 +8,8 @@ workspace:
 steps:
   - name: test
     image: golang:1.11.2
-    secrets: [code_climate]
+    secrets: [CC_TEST_REPORTER_ID]
     ports: [50060]
-    environment:
-      - CC_TEST_REPORTER_ID=$CODE_CLIMATE
 
     commands:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
