@@ -7,7 +7,7 @@ workspace:
 
 steps:
   - name: test
-    image: golang:1.11.1
+    image: golang:1.11.2
     secrets: [codecov_token]
     ports: [50060]
     environment:
