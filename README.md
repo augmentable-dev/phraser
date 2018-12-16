@@ -3,6 +3,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7849d3b904e0249f6402/maintainability)](https://codeclimate.com/github/augmentable-opensource/phraser/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7849d3b904e0249f6402/test_coverage)](https://codeclimate.com/github/augmentable-opensource/phraser/test_coverage)
 
-# phraser
+## phraser
 
-Open source phrase management microservice.
+Open source phrase management microservice for your applications. A centralized phrase database (key-value store) service for your APIs, frontends, or anything else.
+
+Hardcoding text (error messages, help text, feature explanations, etc.) into your source code is quick and dirty, but can be inefficient to maintain and especially difficult for non-developers (i.e. marketing) to modify.
