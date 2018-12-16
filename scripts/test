@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-rm c.out 2> /dev/null 
+rm c.out || true
 touch c.out
 
 for d in $(go list ./... | grep -v vendor | grep -v cmd/phraser); do
