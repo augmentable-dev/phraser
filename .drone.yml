@@ -9,6 +9,7 @@ steps:
   - name: test
     image: golang:1.11.1
     secrets: [codecov_token]
+    ports: [50060]
     environment:
 
     commands:
