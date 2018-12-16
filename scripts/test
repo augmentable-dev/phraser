@@ -5,7 +5,7 @@ echo "" > coverage.txt
 
 for d in $(go list ./... | grep -v vendor | grep -v cmd/phraser); do
     echo $d
-    go test -v -race -coverprofile=cover.out $d
+    go test -v -race -coverprofile=cover.out -covermode=set $d
     if [ -f cover.out ]; then
         cat cover.out >> c.out
         rm cover.out
