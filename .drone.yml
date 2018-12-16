@@ -18,6 +18,6 @@ steps:
       - ./cc-test-reporter before-build
       - ./scripts/test
       - ls -al
-      - ./cc-test-reporter format-coverage ./ -t gcov -o coverage-upload.txt -d
+      - ./cc-test-reporter format-coverage ./ -t cover -o coverage-upload.txt -d
       - ./cc-test-reporter upload-coverage -i coverage-upload.txt
     
