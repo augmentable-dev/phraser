@@ -18,4 +18,4 @@ steps:
       - ./scripts/test
       # - ./cc-test-reporter format-coverage ./ -t c.out -o coverage-upload.txt -d
       # - ./cc-test-reporter upload-coverage -i coverage-upload.txt
-      - ./cc-test-reporter after-build -t gocov
+      - ./cc-test-reporter after-build -t gocov -r $CC_TEST_REPORTER_ID
