@@ -17,5 +17,6 @@ steps:
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - ./scripts/test
-      - ./cc-test-reporter after-build --exit-code 0 -t gcov
+      - ./cc-test-reporter format-coverage -t gcov -o cover.txt c.out
+      - ./cc-test-reporter upload-coverage -i cover.txt
     
