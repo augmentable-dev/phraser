@@ -7,14 +7,15 @@ workspace:
 
 steps:
   - name: test
-    image: golang:1.11.1
-    secrets: [codecov_token]
+    image: golang:1.11.2
+    ports: [50060]
     environment:
+      CC_TEST_REPORTER_ID:
+        from_secret: code_climate_reporter_id
 
     commands:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - ./scripts/test
-      - ./cc-test-reporter after-build --exit-code 0
-    
+      - ./cc-test-reporter after-build -t gocov

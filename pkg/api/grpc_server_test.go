@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	GRPCAddr = "127.0.0.1:50060"
+	GRPCAddr = ":50060"
 )
 
 var GRPCClient api.PhraserClient
@@ -33,7 +33,7 @@ func TestMain(m *testing.M) {
 		}
 	}()
 
-	time.Sleep(3 * 1000)
+	time.Sleep(5 * 1000)
 
 	conn, err := grpc.Dial(GRPCAddr, grpc.WithInsecure())
 	if err != nil {
