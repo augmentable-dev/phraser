@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/augmentable-opensource/phraser/pkg/phraser"
+	badger_backend "github.com/augmentable-opensource/phraser/pkg/phraser/backends/badger"
 	"github.com/dgraph-io/badger"
 )
 
@@ -22,39 +23,13 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	p = phraser.NewPhraser(db)
+
+	backend := badger_backend.NewBadgerBackend(db)
+	p = phraser.NewPhraser(backend)
 	defer p.Close()
 	os.Exit(m.Run())
 }
 
 func TestBasic(t *testing.T) {
-	collection := "test-collection"
-	path := "hello"
-	value := "world"
 
-	_, err := p.SetPhrase(collection, path, value)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	phrase, err := p.GetPhrase(collection, path)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if phrase.Collection != collection {
-		t.Fatalf("expected collection %s; got %s", collection, phrase.Collection)
-	}
-	if phrase.Path != path {
-		t.Fatalf("expected path %s; got %s", path, phrase.Path)
-	}
-	if phrase.Value != value {
-		t.Fatalf("expected value %s; got %s", value, phrase.Value)
-	}
-
-	newValue := "world!"
-	_, err = p.SetPhraseIfNotExists(collection, path, newValue)
-	if err == nil {
-		t.Fatal("expected error for phrase that already exists")
-	}
 }

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/augmentable-opensource/phraser/pkg/api"
+	grpc_server "github.com/augmentable-opensource/phraser/pkg/grpc"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )
@@ -28,7 +29,7 @@ func TestMain(m *testing.M) {
 	}
 
 	go func() {
-		if err := api.StartGRPC(ctx, GRPCAddr, logger); err != nil {
+		if err := grpc_server.StartGRPC(ctx, GRPCAddr, logger); err != nil {
 			logger.Fatal(err.Error())
 		}
 	}()
