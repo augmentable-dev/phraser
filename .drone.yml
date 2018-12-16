@@ -8,8 +8,10 @@ workspace:
 steps:
   - name: test
     image: golang:1.11.2
-    secrets: [code_climate_reporter_id]
     ports: [50060]
+    environment:
+      CC_TEST_REPORTER_ID:
+        from_secret: code_climate_reporter_id
 
     commands:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -17,4 +19,4 @@ steps:
       - ./cc-test-reporter before-build
       - ./scripts/test
       - echo $${CODE_CLIMATE_REPORTER_ID}
-      - ./cc-test-reporter after-build -t gocov -r $CODE_CLIMATE_REPORTER_ID
+      - ./cc-test-reporter after-build -t gocov
