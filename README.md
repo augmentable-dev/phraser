@@ -7,7 +7,7 @@
 
 Open source phrase management microservice for your applications. A centralized phrase database (key-value store) for your APIs, frontends, or anything else.
 
-Hardcoding text (error messages, help text, feature explanations, etc.) into your source code is quick and dirty, but can be inefficient to maintain and especially difficult for non-developers (i.e. marketing) to modify.
+Hardcoding text (error messages, help text, feature explanations, etc.) into your source code is quick and dirty, but can be inefficient to maintain and especially difficult for non-developers (i.e. marketing) to modify. Use `phraser` to centrally manage as much (or as little) human-read text across your applications (frontends, API services, microservices, background jobs, etc).
 
 
 ### FAQs
