@@ -14,5 +14,5 @@ Hardcoding text (error messages, help text, feature explanations, etc.) into you
 
 _So it's a CMS?_
 
-Nope, `phraser` just a string stroe for your applications (frontend/backend) that doesn't make assumptions about _how_ those strings are used.
+Nope, `phraser` is just a string store for your applications (frontend/backend) that doesn't make assumptions about _how_ those strings are used. You can utilize it for CMS-like functionality (though there's no support for rich text, just plaintext strings).
 
