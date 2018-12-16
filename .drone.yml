@@ -18,5 +18,4 @@ steps:
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - ./scripts/test
-      - echo $${CODE_CLIMATE_REPORTER_ID}
       - ./cc-test-reporter after-build -t gocov
