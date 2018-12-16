@@ -17,7 +17,6 @@ steps:
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - ./scripts/test
-      - cat c.out
       # - ./cc-test-reporter format-coverage ./ -t c.out -o coverage-upload.txt -d
       # - ./cc-test-reporter upload-coverage -i coverage-upload.txt
       - ./cc-test-reporter after-build -t gocov
