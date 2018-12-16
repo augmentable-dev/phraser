@@ -8,7 +8,7 @@ workspace:
 steps:
   - name: test
     image: golang:1.11.2
-    secrets: [CC_TEST_REPORTER_ID]
+    secrets: [code_climate_reporter_id]
     ports: [50060]
 
     commands:
@@ -18,5 +18,5 @@ steps:
       - ./scripts/test
       # - ./cc-test-reporter format-coverage ./ -t c.out -o coverage-upload.txt -d
       # - ./cc-test-reporter upload-coverage -i coverage-upload.txt
-      - echo $${CC_TEST_REPORTER_ID}
-      - ./cc-test-reporter after-build -t gocov -r $${CC_TEST_REPORTER_ID}
+      - echo $${code_climate_reporter_id}
+      - ./cc-test-reporter after-build -t gocov -r $CODE_CLIMATE_REPORTER_ID
