@@ -16,7 +16,5 @@ steps:
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
       - ./scripts/test
-      # - ./cc-test-reporter format-coverage ./ -t c.out -o coverage-upload.txt -d
-      # - ./cc-test-reporter upload-coverage -i coverage-upload.txt
-      - echo $${code_climate_reporter_id}
+      - echo $${CODE_CLIMATE_REPORTER_ID}
       - ./cc-test-reporter after-build -t gocov -r $CODE_CLIMATE_REPORTER_ID
