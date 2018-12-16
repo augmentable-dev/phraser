@@ -4,32 +4,70 @@ import (
 	"log"
 	"os"
 	"testing"
-	"time"
 
 	"github.com/augmentable-opensource/phraser/pkg/phraser"
 	badger_backend "github.com/augmentable-opensource/phraser/pkg/phraser/backends/badger"
-	"github.com/dgraph-io/badger"
 )
 
-var p *phraser.Phraser
+var (
+	p        *phraser.Phraser
+	backends map[string]phraser.Backend
+)
 
-func TestMain(m *testing.M) {
-	opts := badger.DefaultOptions
-	dir := "/tmp/phraser-test-" + time.Now().String()
-	opts.Dir = dir
-	opts.ValueDir = dir
-
-	db, err := badger.Open(opts)
+func setupBadgerBackend() {
+	dir := "/tmp/phraser-badger-backend-test"
+	backend, err := badger_backend.NewBadgerBackendFromDir(dir)
 	if err != nil {
 		log.Fatal(err)
 	}
+	backends["Badger"] = backend
+}
 
-	backend := badger_backend.NewBadgerBackend(db)
-	p = phraser.NewPhraser(backend)
-	defer p.Close()
+func TestMain(m *testing.M) {
+	backends = make(map[string]phraser.Backend)
+	setupBadgerBackend()
 	os.Exit(m.Run())
 }
 
 func TestBasic(t *testing.T) {
+	for name, backend := range backends {
+		t.Run(name, func(t *testing.T) {
+			collection := "test-collection"
+			path := "test/path/hello"
+			value := "world"
+			phrase, err := backend.SetPhrase(collection, path, value)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if phrase.Collection != collection {
+				t.Fatalf("expected %s got %s", collection, phrase.Collection)
+			}
+			if phrase.Path != path {
+				t.Fatalf("expected %s got %s", path, phrase.Path)
+			}
+			if phrase.Value != value {
+				t.Fatalf("expected %s got %s", value, phrase.Value)
+			}
 
+			phrase, err = backend.GetPhrase(collection, path)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if phrase.Collection != collection {
+				t.Fatalf("expected %s got %s", collection, phrase.Collection)
+			}
+			if phrase.Path != path {
+				t.Fatalf("expected %s got %s", path, phrase.Path)
+			}
+			if phrase.Value != value {
+				t.Fatalf("expected %s got %s", value, phrase.Value)
+			}
+
+			newValue := "world!"
+			_, err = backend.SetPhraseIfNotExists(collection, path, newValue)
+			if err == nil {
+				t.Fatal("expected error for phrase that already exists")
+			}
+		})
+	}
 }
