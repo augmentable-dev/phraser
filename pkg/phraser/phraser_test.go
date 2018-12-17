@@ -32,10 +32,11 @@ func TestMain(m *testing.M) {
 func TestBasic(t *testing.T) {
 	for name, backend := range backends {
 		t.Run(name, func(t *testing.T) {
+			p := phraser.NewPhraser(backend)
 			collection := "test-collection"
 			path := "test/path/hello"
 			value := "world"
-			phrase, err := backend.SetPhrase(collection, path, value)
+			phrase, err := p.SetPhrase(collection, path, value)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -49,7 +50,7 @@ func TestBasic(t *testing.T) {
 				t.Fatalf("expected %s got %s", value, phrase.Value)
 			}
 
-			phrase, err = backend.GetPhrase(collection, path)
+			phrase, err = p.GetPhrase(collection, path)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -64,7 +65,7 @@ func TestBasic(t *testing.T) {
 			}
 
 			newValue := "world!"
-			_, err = backend.SetPhraseIfNotExists(collection, path, newValue)
+			_, err = p.SetPhraseIfNotExists(collection, path, newValue)
 			if err == nil {
 				t.Fatal("expected error for phrase that already exists")
 			}
