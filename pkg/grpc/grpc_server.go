@@ -4,6 +4,7 @@ import (
 	"log"
 	"net"
 
+	api "github.com/augmentable-opensource/phraser/pkg/api"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
@@ -36,7 +37,7 @@ func StartGRPC(ctx context.Context, bind string, logger *zap.Logger) error {
 	apiServer := &server{
 		quit: ctx.Done(),
 	}
-	RegisterPhraserServer(s, apiServer)
+	api.RegisterPhraserServer(s, apiServer)
 	grpc_prometheus.Register(s)
 	reflection.Register(s)
 
@@ -56,14 +57,14 @@ func StartGRPC(ctx context.Context, bind string, logger *zap.Logger) error {
 	return s.Serve(listener)
 }
 
-func (s *server) SetPhrase(ctx context.Context, params *SetPhraseRequest) (*Phrase, error) {
-	return &Phrase{}, nil
+func (s *server) SetPhrase(ctx context.Context, params *api.SetPhraseRequest) (*api.Phrase, error) {
+	return &api.Phrase{}, nil
 }
 
-func (s *server) GetPhrase(ctx context.Context, params *GetPhraseRequest) (*Phrase, error) {
-	return &Phrase{}, nil
+func (s *server) GetPhrase(ctx context.Context, params *api.GetPhraseRequest) (*api.Phrase, error) {
+	return &api.Phrase{}, nil
 }
 
-func (s *server) ListPhrases(params *ListPhrasesRequest, stream Phraser_ListPhrasesServer) error {
+func (s *server) ListPhrases(params *api.ListPhrasesRequest, stream api.Phraser_ListPhrasesServer) error {
 	return nil
 }
